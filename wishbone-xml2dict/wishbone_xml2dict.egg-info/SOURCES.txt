@@ -1,0 +1,8 @@
+README.rst
+wishbone_xml2dict/__init__.py
+wishbone_xml2dict.egg-info/PKG-INFO
+wishbone_xml2dict.egg-info/SOURCES.txt
+wishbone_xml2dict.egg-info/dependency_links.txt
+wishbone_xml2dict.egg-info/entry_points.txt
+wishbone_xml2dict.egg-info/requires.txt
+wishbone_xml2dict.egg-info/top_level.txt

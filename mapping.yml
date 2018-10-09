@@ -1,0 +1,70 @@
+transforms:
+  - " . as $data | if $data.PROCEDURE.PT_RESTRICTED then ($data.pmt='selective') else ($data.pmt='open') end"
+
+mapping:
+  language:
+    src: '@LG'
+    transforms:
+      - lower
+  date:
+    src: COMPLEMENTARY_INFO.DATE_DISPATCH_NOTICE
+    transforms:
+      - to_isoformat
+  # TODO: buyer identifier id
+  buyer:
+    mapping:
+      name:
+        src: CONTRACTING_BODY.ADDRESS_CONTRACTING_BODY.OFFICIALNAME
+      transforms:
+        - generate_id
+  # TODO: tag "planning" tag "tender"
+  
+    
+  tender:
+    mapping:
+      id:
+        src: 'OBJECT_CONTRACT.REFERENCE_NUMBER'
+      title:
+        src: 'OBJECT_CONTRACT.TITLE'
+      legalBasis:
+        src: LEGAL_BASIS
+      reviewDetails:
+        src: COMPLEMENTARY_INFO.REVIEW_PROCEDURE
+      coveredBy:
+        src: PROCEDURE.CONTRACT_COVERED_GPA
+      mainProcurementCategory:
+        src: 'OBJECT_CONTRACT.TYPE_CONTRACT.@CTYPE'
+      description:
+        src: OBJECT_CONTRACT.SHORT_DESCR
+      items:
+        mapping:
+          classification:
+            scheme:
+              default: cpv
+            id:
+              src: OBJECT_CONTRACT.CPV_MAIN.CPV_CODE
+      value:
+        mapping:
+          amount:
+            src: OBJECT_CONTRACT.VAL_ESTIMATED_TOTAL
+          currency:
+            src: 'OBJECT_CONTRACT.VAL_ESTIMATED_TOTAL.@CURRENCY'
+            
+      tenderPeriod:
+        mapping:
+          startDate:
+            src: OBJECT_CONTRACT.DATE_PUBLICATION_NOTICE
+            transforms:
+              - to_isoformat
+          endDate:
+            src: PROCEDURE.DATE_RECEIPT_TENDERS
+            transforms:
+              - to_isoformat
+      awardPeriod:
+        mapping:
+          startDate:
+            src: PROCEDURE.DATE_AWARD_SCHEDULED
+            transforms:
+              - to_isoformat
+        
+

@@ -1,0 +1,17 @@
+Metadata-Version: 1.1
+Name: wishbone-xml2dict
+Version: 0.1
+Summary: 
+Wishbone process module to transform data from xml to dict using xmltodict library
+
+Home-page: -
+Author: yshalenyk
+Author-email: yshalenyk@quintagroup.com
+License: UNKNOWN
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6

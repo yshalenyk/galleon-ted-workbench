@@ -1,0 +1,7 @@
+setuptools
+wishbone
+xmltodict
+
+[test]
+pytest
+pytest-cov

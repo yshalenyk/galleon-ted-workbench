@@ -1,3 +1,0 @@
-[wishbone.module.process]
-xml2dict = wishbone_xml2dict:Xml2DictModule
-

@@ -6,11 +6,32 @@ modules:
       paths:
         input/: ['IN_CREATE', 'IN_CLOSE_WRITE']
 
-  output:
+  fileread:
+    module: wishbone.module.process.fileread
+
+  process:
+    module: wishbone.module.process.galleon
+    arguments:
+      mapping: mapping.yml
+      schema: config/schema.json
+
+  fileout:
+    module: wishbone.module.output.jsonfile
+    arguments:
+      path: output
+
+  fanout:
+    module: wishbone.module.flow.fanout
+
+  stdout:
     module: wishbone.module.output.stdout
     arguments:
       colorize: True
 
 
 routingtable:
-  - input.outbox -> output.inbox
+  - input.outbox -> fileread.inbox
+  - fileread.outbox -> process.inbox
+  - process.outbox -> fanout.inbox
+  - fanout.one -> stdout.inbox
+  - fanout.two -> fileout.inbox

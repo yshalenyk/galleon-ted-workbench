@@ -1,0 +1,16 @@
+modules:
+
+  input:
+    module: wishbone.module.input.inotify
+    arguments:
+      paths:
+        input/: ['IN_CREATE', 'IN_CLOSE_WRITE']
+
+  output:
+    module: wishbone.module.output.stdout
+    arguments:
+      colorize: True
+
+
+routingtable:
+  - input.outbox -> output.inbox
